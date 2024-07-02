@@ -31,17 +31,15 @@ jobs:
       - name: Move build files
         run: mv .next out # Rename .next to out for consistency with deployment steps
 
-      - name: List files in root directory
-        run: ls -la
-
       - name: List files in out directory
         run: ls -la out
 
       - name: Upload artifact for deployment
+        id: upload-pages-artifact # Add an ID to the step to capture its output
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out # Ensure this is the correct path to your build output directory
-          name: artefak # Specify the name of the artifact
+          path: out # Ensure this is the correct path to your build output directory
+          name: github-pages # Specify the name of the artifact
 
   deploy:
     runs-on: ubuntu-latest
@@ -53,6 +51,6 @@ jobs:
 
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v1
         with:
-          artifact_name: artefak # Use the same artifact name
+          artifact_id: ${{ steps.upload-pages-artifact.outputs.artifact_id }} # Use the artifact ID captured from the upload step
