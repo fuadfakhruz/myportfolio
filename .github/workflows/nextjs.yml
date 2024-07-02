@@ -24,9 +24,6 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: List files in out directory
-        run: ls -la out
-
       - name: Upload artifact for deployment
         uses: actions/upload-pages-artifact@v3
         with:
