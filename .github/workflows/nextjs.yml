@@ -35,7 +35,6 @@ jobs:
         run: ls -la out
 
       - name: Upload artifact for deployment
-        id: upload-pages-artifact # Add an ID to the step to capture its output
         uses: actions/upload-pages-artifact@v3
         with:
           path: out # Ensure this is the correct path to your build output directory
@@ -51,6 +50,6 @@ jobs:
 
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v2
         with:
-          artifact_id: ${{ steps.upload-pages-artifact.outputs.artifact_id }} # Use the artifact ID captured from the upload step
+          artifact-name: github-pages
