@@ -33,7 +33,7 @@ jobs:
       - name: Upload artifact for deployment
         uses: actions/upload-pages-artifact@v3
         with:
-          path: out # Ensure this is the correct path to your build output directory
+          path: .next # Ensure this is the correct path to your build output directory
 
   deploy:
     runs-on: ubuntu-latest
