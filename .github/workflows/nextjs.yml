@@ -28,6 +28,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: .next # Ensure this is the correct path to your build output directory
+          name: github-pages
 
   deploy:
     runs-on: ubuntu-latest
@@ -38,3 +39,5 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v1
+        with:
+          artifact_name: github-pages
