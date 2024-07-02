@@ -9,6 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    permissions:
+      id-token: write
+      contents: read
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -24,20 +28,31 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Move build files
+        run: mv .next out # Rename .next to out for consistency with deployment steps
+
+      - name: List files in root directory
+        run: ls -la
+
+      - name: List files in out directory
+        run: ls -la out
+
       - name: Upload artifact for deployment
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .next # Ensure this is the correct path to your build output directory
-          name: github-pages
+          path: out # Ensure this is the correct path to your build output directory
+          name: github-pages # Specify the name of the artifact
 
   deploy:
     runs-on: ubuntu-latest
     needs: build
-    permissions: # Add this section to set the required permissions
+
+    permissions:
       id-token: write
       contents: read
+
     steps:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v1
         with:
-          artifact_name: github-pages
+          artifact_name: github-pages # Use the same artifact name
