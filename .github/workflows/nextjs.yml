@@ -32,6 +32,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
+    permissions: # Add this section to set the required permissions
+      id-token: write
+      contents: read
     steps:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v1
