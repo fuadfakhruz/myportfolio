@@ -40,8 +40,8 @@ jobs:
       - name: Upload artifact for deployment
         uses: actions/upload-pages-artifact@v3
         with:
-          path: out # Ensure this is the correct path to your build output directory
-          name: github-pages # Specify the name of the artifact
+          path: ./out # Ensure this is the correct path to your build output directory
+          name: artefak # Specify the name of the artifact
 
   deploy:
     runs-on: ubuntu-latest
@@ -53,6 +53,6 @@ jobs:
 
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v2
         with:
-          artifact_name: github-pages # Use the same artifact name
+          artifact_name: artefak # Use the same artifact name
