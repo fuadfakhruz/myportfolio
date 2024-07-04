@@ -5,7 +5,7 @@ export default function Hero() {
     <div className="hero" id="home">
       <div className="container mx-auto -mt-2">
         <div className="flex flex-col md:flex-row items-center">
-          <div className="">
+          <div className="max-w-screen mx-4">
             <div className="hero-content text-grey-900">
               <p className="text-3xl font-semibold">I&apos;m</p>
               <h1 className="text-6xl font-bold">Muhammad Fuad Fakhruzzaki</h1>
